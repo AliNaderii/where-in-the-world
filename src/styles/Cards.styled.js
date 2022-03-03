@@ -5,7 +5,7 @@ export const StyledCards = styled.section`
   padding-top: 35px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
+  gap: 50px 75px;
   font-size: ${({ theme }) => theme.font.home};
 
   /* MEDIA QUERY */

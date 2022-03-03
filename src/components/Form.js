@@ -1,7 +1,5 @@
 // TOOLS
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 // COMPONENTS
 import Error from "./Error";
 // STYLES
@@ -17,41 +15,39 @@ const options = [
   'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'
 ];
 
-export default function Form({ addFilter, mode }) {
-  const [country, setCountry] = useState('');
+export default function Form({ handleSearch, search, addFilter, mode }) {
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
 
-  const search = async (e) => {
-    e.preventDefault();
+  // const search = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const res = await axios.get(`https://restcountries.com/v2/name/${country}`);
-      if (!res) {
-        throw new Error('Could not fetch the data');
-      }
+  //   try {
+  //     const res = await axios.get(`https://restcountries.com/v2/name/${country}`);
+  //     if (!res) {
+  //       throw new Error('Could not fetch the data');
+  //     }
 
-      setCountry(...res.data);
-      navigate(`/details/${country}`);
-    }
-    catch (err) {
-      console.log(err);
-      setError(true);
-      setCountry('');
-    }
-  };
+  //     setCountry(...res.data);
+  //     navigate(`/details/${country}`);
+  //   }
+  //   catch (err) {
+  //     console.log(err);
+  //     setError(true);
+  //     setCountry('');
+  //   }
+  // };
 
 
   return (
-    <StyledForm onSubmit={ search } mode={ mode }>
+    <StyledForm mode={ mode }>
       <div>
         <Searchbar mode={ mode }>
           <FontAwesomeIcon icon={ faSearch } />
           <input
             type='text'
             placeholder="Search for a country..."
-            onChange={ (e) => setCountry(e.target.value) }
-            value={ country }
+            onChange={ (e) => handleSearch(e.target.value) }
+            value={ search }
           />
         </Searchbar>
         { error && <Error><p>The country you are looking for doesn't exist !!</p></Error> }
