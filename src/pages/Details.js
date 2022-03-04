@@ -13,7 +13,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Details() {
   const name = useParams().country;
-  const correctName = name.replace(' ', '%20');
+  const correctName = name.replace(/\s/g, '%20');
   const url = `https://restcountries.com/v2/name/${correctName}`;
   const { data, isPending } = useAxios(url);
   // MUST WAIT TILL THE PROMIS RESOLVES THEN DESTRUCTURE THE DATA
