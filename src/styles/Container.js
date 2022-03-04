@@ -5,7 +5,5 @@ export const Container = styled.main`
   margin: 0 auto;
   padding-top: 25px;
   font-size: ${({ text }) => text};
-  color: ${({ theme, mode }) =>
-    mode === 'light' ? theme.light.text : theme.dark.text
-  };
+  color: ${({ theme }) => theme.text};
 `;

@@ -5,7 +5,7 @@ export const StyledCards = styled.section`
   padding-top: 35px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px 75px;
+  gap: 50px 70px;
   font-size: ${({ theme }) => theme.font.home};
 
   /* MEDIA QUERY */
@@ -23,14 +23,12 @@ export const StyledCards = styled.section`
 `;
 
 export const Card = styled.div`
-  background-color: ${({ theme, mode }) => mode === 'light' ? theme.light.background : theme.dark.element};
-  border-radius: 5px;
+  background-color: ${({ theme }) => theme.background};
+  border-radius: 10px;
   height: fit-content;
   padding-bottom: 30px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  color: ${({ theme, mode }) =>
-    mode === 'light' ? theme.light.text : theme.dark.text
-  };
+  box-shadow: ${({ theme }) => theme.boxShadow};
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: 425px) {
     width: 300px;
@@ -40,8 +38,8 @@ export const Card = styled.div`
 export const Flag = styled.img`
   width: 100%;
   height: 150px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 
   /* MEDIA QUERY */
   @media (max-width: 1000px) {

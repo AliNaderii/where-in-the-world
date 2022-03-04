@@ -6,14 +6,15 @@ import { Container } from "../styles/Container";
 // COMPONENTS
 import Detail from "../components/Detail";
 import Button from "../components/Button";
+import Spinner from "../components/Spinner";
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function Details({ mode }) {
+export default function Details() {
   const name = useParams().country;
   const url = `https://restcountries.com/v2/name/${name}`;
-  const data = useAxios(url);
+  const { data, isPending } = useAxios(url);
   // MUST WAIT TILL THE PROMIS RESOLVES THEN DESTRUCTURE THE DATA
   // BECAUSE THE RESOLVED PROMIS RETURNS AN ARRAY
   let country;
@@ -22,15 +23,16 @@ export default function Details({ mode }) {
   }
 
   return (
-    <Container text='16px' mode={ mode }>
+    <Container text='16px'>
       <Link to='/'>
-        <Button top='25px' width='120px' mode={ mode }>
+        <Button top='25px' width='120px'>
           <FontAwesomeIcon icon={ faArrowLeft } />
           Back
         </Button>
       </Link>
 
-      { data && <Detail country={ country } mode={ mode }>Detail</Detail> }
+      { !isPending && data && <Detail country={ country }>Detail</Detail> }
+      { isPending && <Spinner /> }
     </Container>
   );
 }

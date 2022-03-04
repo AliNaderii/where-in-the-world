@@ -6,7 +6,7 @@ import axios from "axios";
 import { StyledDetail, InfoSection, CountryInfo, BorderCountries } from "../styles/Detail.styled";
 import Button from "../components/Button";
 
-export default function Detail({ country, mode }) {
+export default function Detail({ country }) {
   const [borders, setBorders] = useState([]);
 
   // THE BORDER COUNTRIES OF A COUNTRY IS AN ARRAY WHICH IS WRITTEN 
@@ -69,7 +69,7 @@ export default function Detail({ country, mode }) {
           </div>
         </CountryInfo>
 
-        <BorderCountries mode={ mode }>
+        <BorderCountries >
           <p>BorderCountires: </p>
           <div>
             { borders.map(border => (
@@ -77,7 +77,7 @@ export default function Detail({ country, mode }) {
                 <Button
                   width='100%'
                   padding='5px'
-                  mode={ mode }>
+                >
                   { border }
                 </Button>
               </Link>

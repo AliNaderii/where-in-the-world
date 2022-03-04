@@ -11,12 +11,12 @@ const options = [
   'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'
 ];
 
-export default function Form({ handleSearch, search, addFilter, mode }) {
+export default function Form({ handleSearch, search, addFilter }) {
 
   return (
-    <StyledForm mode={ mode }>
+    <StyledForm>
       <div>
-        <Searchbar mode={ mode }>
+        <Searchbar>
           <FontAwesomeIcon icon={ faSearch } />
           <input
             type='text'
@@ -30,7 +30,6 @@ export default function Form({ handleSearch, search, addFilter, mode }) {
         options={ options }
         placeholder='Filter by Region'
         onChange={ (e) => addFilter(e.value) }
-        mode={ mode }
       />
     </StyledForm>
   );

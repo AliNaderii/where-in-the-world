@@ -9,10 +9,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Nunito Sans', sans-serif;
-    background-color: ${({ theme, mode }) => mode === 'light' ? theme.light.background : theme.dark.background};
-    color: ${({ theme, mode }) =>
-    mode === 'light' ? theme.light.text : theme.dark.text
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text
   };
+    transition: all 0.4s linear
   }
 
   li {

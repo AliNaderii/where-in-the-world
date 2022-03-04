@@ -9,18 +9,26 @@ import Home from "./pages/Home";
 import Details from "./pages/Details";
 import Navbar from "./components/Navbar";
 
-const theme = {
-  light: {
-    text: 'hsl(200, 15%, 8%)',
-    background: 'hsl(0, 0%, 98%)',
-    element: 'hsl(0, 0%, 100%)'
-  },
-  dark: {
-    text: 'hsl(0, 0%, 100%)',
-    background: 'hsl(207, 26%, 17%)',
-    element: 'hsl(209, 23%, 22%)'
-  },
+const lightTheme = {
+  text: 'hsl(200, 15%, 8%)',
+  background: 'hsl(0, 0%, 98%)',
+  element: 'hsl(0, 0%, 100%)',
   input: 'hsl(0, 0%, 52%)',
+  boxShadow:
+    'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
+
+  font: {
+    home: '14px',
+    details: '16px'
+  }
+};
+
+const darkTheme = {
+  text: 'hsl(0, 0%, 100%)',
+  background: 'hsl(207, 26%, 17%)',
+  element: 'hsl(209, 23%, 22%)',
+  input: 'hsl(0, 0%, 52%)',
+  boxShadow: '0 -2px 10px rgba(0, 0, 0, 1)',
 
   font: {
     home: '14px',
@@ -29,26 +37,25 @@ const theme = {
 };
 
 function App() {
-  const [mode, setMode] = useState('light');
-  console.log('app:', mode);
+  const [theme, setTheme] = useState(lightTheme);
 
   // CHANGE LIGHT AND DARK MODE
-  const changeMode = () => {
-    setMode(prevstate => prevstate === 'light' ? 'dark' : 'light');
+  const changeTheme = () => {
+    setTheme(prevstate => prevstate === lightTheme ? darkTheme : lightTheme);
   };
 
   return (
     <ThemeProvider theme={ theme }>
-      <GlobalStyle mode={ mode } />
+      <GlobalStyle />
       <Router>
-        <Navbar changeMode={ changeMode } mode={ mode } />
+        <Navbar changeTheme={ changeTheme } />
         <Routes>
           <Route
             path='/'
-            element={ <Home mode={ mode } /> } />
+            element={ <Home /> } />
           <Route
             path='/details/:country'
-            element={ <Details mode={ mode } /> } />
+            element={ <Details /> } />
         </Routes>
       </Router>
     </ThemeProvider>
