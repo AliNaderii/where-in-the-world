@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const StyledNavbar = styled.nav`
   width: 100%;
   background-color: ${({ theme, mode }) =>
-    mode === 'light' ? theme.light.background : theme.dark.background
+    mode === 'light' ? '#fff' : theme.dark.background
   };
   height: 60px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;

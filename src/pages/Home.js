@@ -12,9 +12,11 @@ export default function Home({ mode }) {
   const url = 'https://restcountries.com/v2/all';
   const [searchTerm, setSearchTerm] = useState(null);
   const [filter, setFilter] = useState(null);
+  // const [countries, setCountries] = useState(null);
 
   // GET COUNTRIES
-  const countries = useAxios(url, filter);
+  const { data, isPending } = useAxios(url, filter);
+  console.log(data);
 
   // SET SEARCHED COUNTRY
   const handleSearch = (term) => {
@@ -22,12 +24,12 @@ export default function Home({ mode }) {
   };
 
   // FIND THE SEARCHED COUNTRY
-  const searchedCountry = countries ? countries.filter(country => {
+  const countries = data ? data.filter(country => {
     const countryName = country.name.toLowerCase();
     const input = searchTerm ? searchTerm.toLowerCase() : '';
     return countryName.includes(input);
   }) : [];
-  console.log(searchedCountry);
+  console.log(countries);
 
   // SET FILTER FOR FILTERING COUNTRIES BY REGION
   const addFilter = (selectedFilter) => {
@@ -36,10 +38,10 @@ export default function Home({ mode }) {
 
   return (
     <Container mode={ mode }>
-      <Form countries={ countries } addFilter={ addFilter } mode={ mode } handleSearch={ handleSearch } />
+      <Form addFilter={ addFilter } mode={ mode } handleSearch={ handleSearch } />
 
       <Suspense fallback={ <p>Loading ...</p> }>
-        { countries && <Cards countries={ searchTerm ? searchedCountry : countries } mode={ mode } /> }
+        { !isPending && <Cards countries={ countries } mode={ mode } /> }
       </Suspense>
     </Container>
   );

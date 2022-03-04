@@ -4,8 +4,10 @@ import axios from "axios";
 
 export const useAxios = (url, filter) => {
   const [data, setData] = useState(null);
+  const [isPending, setIsPending] = useState(false);
 
   const getCountries = async () => {
+    setIsPending(true);
 
     try {
       const res = await axios.get(url);
@@ -16,13 +18,16 @@ export const useAxios = (url, filter) => {
       if (filter) {
         const filtered = res.data.filter(data => data.region === filter);
         setData(filtered);
+        setIsPending(false);
       } else {
         setData(res.data);
+        setIsPending(false);
       }
     }
 
     catch (err) {
       console.log(err.message);
+      setIsPending(false);
     }
   };
 
@@ -34,5 +39,5 @@ export const useAxios = (url, filter) => {
     callback();
   }, [callback]);
 
-  return data;
+  return { data, isPending };
 };
