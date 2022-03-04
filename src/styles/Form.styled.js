@@ -18,6 +18,27 @@ export const StyledForm = styled.form`
     font-weight: 600;
   }
 
+  .Dropdown-menu {
+  background-color: ${({ theme }) => theme.element};
+  color: ${({ theme }) => theme.text};
+  border: unset;
+  box-shadow: 
+  rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, 
+  rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.Dropdown-option {
+  color: ${({ theme }) => theme.text};
+  font-weight: 600;
+
+  &:hover {
+    background-color: #999;
+    color: ${({ theme }) => theme.text};
+  }
+}
+
 @media(max-width: 768px) {
   flex-direction: column;
   align-items: center;
