@@ -16,7 +16,7 @@ export default function Cards({ countries, isPending }) {
           {
             countries.length > 0 && countries.map(country => (
               <Card key={ country.name } >
-                <Link to={ `/details/${country.name.replace(' ', '%20')}` }>
+                <Link to={ `/details/${country.name.replace(/' '/g, '%20')}` }>
                   <Flag src={ country.flags.png } alt='flag' />
                 </Link>
                 <Info>
