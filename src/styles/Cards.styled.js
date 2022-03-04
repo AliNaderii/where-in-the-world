@@ -60,7 +60,8 @@ export const Info = styled.div`
     }
   }
 
-  h3 {
+  h2 {
     margin: 15px 0;
+    font-size: 18px;
   }
 `;

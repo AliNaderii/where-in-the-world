@@ -16,11 +16,13 @@ export default function Cards({ countries, isPending }) {
           {
             countries.length > 0 && countries.map(country => (
               <Card key={ country.name } >
-                <Link to={ `/details/${country.name.replace(/'\s'/g, '%20')}` }>
+                <Link to={
+                  `/details/${country.name.replace(/[\s]/g, '%20')}`
+                }>
                   <Flag src={ country.flags.png } alt='flag' />
                 </Link>
                 <Info>
-                  <h3>{ country.name }</h3>
+                  <h2>{ country.name }</h2>
                   <p>Population: <span>{ country.population }</span></p>
                   <p>Region: <span>{ country.region }</span></p>
                   <p>Capital: <span>{ country.capital }</span></p>
